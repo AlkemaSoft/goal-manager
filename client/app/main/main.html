@@ -1,0 +1,98 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6 col-md-6 col-lg-6">
+
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          Summary
+        </div>
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-lg-offset-2 col-lg-8 col-sm-offset-2 col-sm-8">
+
+              <table>
+                <tr><td>Completed: </td><td><strong>{{summary.completed}}</strong></td></tr>
+                <tr><td>Active: </td><td><strong>{{summary.active}}</strong></td></tr>
+                <tr><td>Overdue: </td><td><strong>{{summary.overdue}}</strong></td></tr>
+                <tr><td>Canceled: </td><td><strong>{{summary.canceled}}</strong></td></tr>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="col-sm-6 col-md-6 col-lg-6">
+
+      <uib-tabset active="activeJustified">
+        <uib-tab index="0" heading="Year-To-Date">
+          <canvas id="dataYearToDate" class="chart chart-bar"
+                  chart-data="dataYearToDate" chart-labels="labels"> chart-series="series"
+          </canvas>
+        </uib-tab>
+        <uib-tab index="1" heading="This Month">
+          <canvas id="thisMonth" class="chart chart-bar"
+                  chart-data="dataThisMonth" chart-labels="labels"> chart-series="series"
+          </canvas>
+        </uib-tab>
+        <uib-tab index="2" heading="Inception">
+          <canvas id="inception" class="chart chart-bar"
+                  chart-data="dataInception" chart-labels="labels"> chart-series="series"
+          </canvas>
+        </uib-tab>
+      </uib-tabset>
+    </div>
+
+  </div>
+
+  <div class="row">
+    <div class="col-sm-12 col-md-12 col-lg-12">
+      <div align="right">
+        <a ui-sref="addgoal" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> Goal</a>
+      </div>
+      <div class="table-responsive">
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th>#</th>
+            <th width="40%">Global Description</th>
+            <th>Due Date</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+          <tr>
+            <th colspan="6">
+              <form>
+                <input type="text" placeholder="Enter Goal name to search..." class="form-control"
+                       ng-model="s" ng-change="search()"/>
+              </form>
+            </th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr ng-show="!goals.length">
+            <td colspan="6">
+              <p>There are no goal saved!</p>
+            </td>
+          </tr>
+          <tr ng-show="goals.length" ng-repeat="goal in goals">
+            <td>
+              {{$index}}
+            </td>
+            <td>
+              {{goal.description}}
+            </td>
+            <td>{{goal.dueDate | date: 'MM/dd/yyyy'}}</td>
+            <td>{{goal.status}}</td>
+            <td>
+              <button ng-click="markComplete(goal)" class="btn btn-primary btn-sm"> Mark Complete</button>
+              <a ng-click="cancelGoal(goal)" class="btn btn-danger btn-sm">Cancel</a>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
