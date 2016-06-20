@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # goals-app
 
 This project was generated with the [Angular Full-Stack Generator](https://github.com/DaftMonk/generator-angular-fullstack) version 3.7.5.
@@ -29,3 +30,6 @@ Run `grunt build` for building and `grunt serve` for preview.
 ## Testing
 
 Running `npm test` will run the unit tests with karma.
+=======
+# goal-manager
+>>>>>>> 80a5132741c57be780d3df29d77dd0681bd27b1b
